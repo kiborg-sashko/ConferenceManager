@@ -38,7 +38,7 @@ namespace ConferenceManager.ConsoleApp
             Console.WriteLine($"\nParticipant Registered: {participant.FullName} ({participant.Organization})");
 
             Console.WriteLine("\nPress any key to exit...");
-            Console.ReadKey();
+           // Console.ReadKey();
         }
     }
 }

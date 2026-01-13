@@ -2,4 +2,5 @@
   <Project Path="ConferenceManager.ConsoleApp/ConferenceManager.ConsoleApp.csproj" />
   <Project Path="ConferenceManager.Core/ConferenceManager.Core.csproj" />
   <Project Path="ConferenceManager.Tests/ConferenceManager.Tests.csproj" />
+  <Project Path="ConferenceManager.Web/ConferenceManager.Web.csproj" />
 </Solution>
