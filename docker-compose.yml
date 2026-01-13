@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  webapp:
+    image: conferencemanager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080" # Порт 5000 на твоєму ПК -> Порт 8080 у контейнері
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseType=Sqlite
+      - ConnectionStrings__Sqlite=Data Source=/app/data/app.db
+    volumes:
+      - ./data:/app/data # Зберігаємо базу даних у папку data на твоєму ПК
