@@ -1,0 +1,54 @@
+@model IEnumerable<ConferenceManager.Core.Entities.Report>
+
+@{
+    ViewData["Title"] = "Advanced Search (Reports)";
+}
+
+<h2>Search Reports (JOINs Demo)</h2>
+
+<form asp-action="Index" method="get" class="card p-3 mb-4 bg-light">
+    <div class="row">
+        <div class="col-md-3">
+            <label>Title search:</label>
+            <input type="text" name="searchString" class="form-control" placeholder="Report title..." />
+        </div>
+        
+        <div class="col-md-3">
+            <label>Conference:</label>
+            <select name="conferenceId" class="form-control" asp-items="ViewBag.ConferenceId">
+                <option value="">-- All Conferences --</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label>Date From:</label>
+            <input type="date" name="startDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+             <label>Date To:</label>
+            <div class="input-group">
+                <input type="date" name="endDate" class="form-control" />
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Report Title</th>
+            <th>Author (Joined)</th>
+            <th>Conference (Joined)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Participant.FullName</td> <td>@item.Conference.Name</td>      <td>@item.Conference.Date.ToShortDateString()</td>
+        </tr>
+}
+    </tbody>
+</table>
