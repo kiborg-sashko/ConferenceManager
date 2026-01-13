@@ -37,6 +37,10 @@ Vagrant.configure("2") do |config|
     fi
     git clone https://github.com/kiborg-sashko/ConferenceManager.git /home/vagrant/ConferenceManager
 
+    echo "=== Fixing Permissions ==="
+    sudo chown -R vagrant:vagrant /home/vagrant/ConferenceManager
+    git config --global --add safe.directory /home/vagrant/ConferenceManager
+    
     # Запускаємо програму
     echo "=== Running ConferenceManager ==="
     cd /home/vagrant/ConferenceManager
