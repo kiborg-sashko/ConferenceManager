@@ -32,5 +32,15 @@ namespace ConferenceManager.Web.Controllers.Api
             if (conference == null) return NotFound();
             return conference;
         }
+        [HttpPost]
+public async Task<ActionResult<Conference>> PostConference(Conference conference)
+{
+    // Додаємо нову конференцію в базу даних
+    _context.Conferences.Add(conference);
+    await _context.SaveChangesAsync();
+
+    // Повертаємо 201 Created та створений об'єкт
+    return CreatedAtAction(nameof(GetConference), new { id = conference.Id, version = "1.0" }, conference);
+}
     }
 }
