@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ConferenceManager.Client.ViewModels"
+             x:Class="ConferenceManager.Client.Views.MainPage"
+             Title="Conference Manager">
+
+    <Grid>
+        <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+            
+            <Image Source="dotnet_bot.png" HeightRequest="150" HorizontalOptions="Center" />
+
+            <Label Text="Вітаємо у Conference Manager!"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Увійти через Auth0"
+                    Command="{Binding LoginCommand}"
+                    HeightRequest="50"
+                    WidthRequest="250"
+                    HorizontalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Conferences}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" FontSize="18" Padding="10" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+        <ContentView IsVisible="{Binding IsBusy}" 
+                     BackgroundColor="#AA000000">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                   Color="White" 
+                                   Scale="2" />
+                <Label Text="Завантаження..." 
+                       TextColor="White" 
+                       FontSize="18" 
+                       HorizontalOptions="Center" 
+                       Margin="0,20,0,0" />
+            </VerticalStackLayout>
+        </ContentView>
+    </Grid>
+</ContentPage>
