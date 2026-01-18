@@ -65,7 +65,15 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")  
+              .AllowAnyMethod()   
+              .AllowAnyHeader();  
+    });
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -81,6 +89,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles(); 
 app.UseRouting();
+
+app.UseCors("AllowAll");
 
 app.UseAuthentication(); 
 app.UseAuthorization();  
